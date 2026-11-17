@@ -1,10 +1,10 @@
 CREATE TABLE Aluno (
     id_aluno        INT IDENTITY(1,1) NOT NULL,
     nome            VARCHAR(100) NOT NULL,
-    cpf             CHAR(11)     NOT NULL,          -- somente dígitos
+    cpf             CHAR(11)     NOT NULL,          
     email           VARCHAR(100) NOT NULL,
     data_nascimento DATE         NOT NULL,
-    telefone        VARCHAR(11)  NULL,              -- DDD + número, só dígitos
+    telefone        VARCHAR(11)  NULL,              
     genero          CHAR(1)      NULL,
     ativo           BIT          NOT NULL CONSTRAINT DF_Aluno_ativo DEFAULT 1,
     CONSTRAINT PK_Aluno PRIMARY KEY (id_aluno),
@@ -19,7 +19,7 @@ CREATE TABLE Aluno (
 GO
 
 CREATE TABLE Plano (
-    id_plano       TINYINT IDENTITY(1,1) NOT NULL,   -- catálogo pequeno (máx. 255)
+    id_plano       TINYINT IDENTITY(1,1) NOT NULL,   
     nome           VARCHAR(40)  NOT NULL,
     descricao      VARCHAR(100) NULL,
     valor          DECIMAL(7,2) NOT NULL,
@@ -68,7 +68,6 @@ CREATE TABLE Exercicio (
 );
 GO
 
-/* ---------- Tabelas dependentes ---------- */
 
 CREATE TABLE Assinatura (
     id_assinatura INT IDENTITY(1,1) NOT NULL,
@@ -77,7 +76,7 @@ CREATE TABLE Assinatura (
     data_inicio   DATE         NOT NULL,
     data_fim      DATE         NOT NULL,
     status        VARCHAR(10)  NOT NULL CONSTRAINT DF_Assinatura_status DEFAULT 'Ativa',
-    valor_mensal  DECIMAL(7,2) NOT NULL,            -- preço do plano na data da contratação
+    valor_mensal  DECIMAL(7,2) NOT NULL,           
     CONSTRAINT PK_Assinatura PRIMARY KEY (id_assinatura),
     CONSTRAINT FK_Assinatura_Aluno FOREIGN KEY (id_aluno) REFERENCES Aluno(id_aluno),
     CONSTRAINT FK_Assinatura_Plano FOREIGN KEY (id_plano) REFERENCES Plano(id_plano),
@@ -109,7 +108,7 @@ CREATE TABLE Aula (
     id_instrutor  SMALLINT  NOT NULL,
     data_aula     DATE      NOT NULL,
     horario       TIME(0)   NOT NULL,
-    duracao       TINYINT   NOT NULL,              -- minutos
+    duracao       TINYINT   NOT NULL,              
     capacidade    TINYINT   NOT NULL,
     CONSTRAINT PK_Aula PRIMARY KEY (id_aula),
     CONSTRAINT FK_Aula_Modalidade FOREIGN KEY (id_modalidade) REFERENCES Modalidade(id_modalidade),
@@ -119,7 +118,7 @@ CREATE TABLE Aula (
 );
 GO
 
-CREATE TABLE Presenca (                             -- resolve N x N Aluno x Aula
+CREATE TABLE Presenca (                             
     id_presenca INT IDENTITY(1,1) NOT NULL,
     id_aluno    INT NOT NULL,
     id_aula     INT NOT NULL,
@@ -163,7 +162,7 @@ CREATE TABLE Treino (
 );
 GO
 
-CREATE TABLE Item_Treino (                          -- resolve N x N Treino x Exercicio
+CREATE TABLE Item_Treino (                        
     id_item_treino INT IDENTITY(1,1) NOT NULL,
     id_treino      INT          NOT NULL,
     id_exercicio   SMALLINT     NOT NULL,
