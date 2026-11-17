@@ -1,0 +1,13 @@
+CREATE TABLE Plano (
+    id_plano       TINYINT IDENTITY(1,1) NOT NULL,   -- catálogo pequeno (máx. 255)
+    nome           VARCHAR(40)  NOT NULL,
+    descricao      VARCHAR(100) NULL,
+    valor          DECIMAL(7,2) NOT NULL,
+    duracao_meses  TINYINT      NOT NULL,
+    ativo          BIT          NOT NULL CONSTRAINT DF_Plano_ativo DEFAULT 1,
+    CONSTRAINT PK_Plano PRIMARY KEY (id_plano),
+    CONSTRAINT UQ_Plano_nome UNIQUE (nome),
+    CONSTRAINT CK_Plano_valor   CHECK (valor > 0),
+    CONSTRAINT CK_Plano_duracao CHECK (duracao_meses BETWEEN 1 AND 36)
+);
+GO
