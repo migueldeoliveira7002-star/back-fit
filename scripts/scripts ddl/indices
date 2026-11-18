@@ -1,0 +1,64 @@
+---assinaturas ativas que vencem nos proximos dias---
+CREATE INDEX IX_Assinatura_status_datafim
+    ON Assinatura (status, data_fim) INCLUDE (id_aluno, id_plano);
+
+--fk de assinatura para aluno (ver as assinaturas de cada aluno)---
+CREATE INDEX IX_Assinatura_aluno
+    ON Assinatura (id_aluno) INCLUDE (status, data_fim);
+
+---quantas assinaturas ativas por plano (tambem ajuda a fk de plano)---
+CREATE INDEX IX_Assinatura_plano_status
+    ON Assinatura (id_plano, status);
+
+---receita por mes e pagamentos atrasados---
+CREATE INDEX IX_Pagamento_status_data
+    ON Pagamento (status, data_pagamento) INCLUDE (valor, id_assinatura);
+
+---fk de pagamento para assinatura (ver os pagamentos de cada assinatura)---
+CREATE INDEX IX_Pagamento_assinatura
+    ON Pagamento (id_assinatura);
+
+---aulas do dia e vagas que sobraram---
+CREATE INDEX IX_Aula_data_horario
+    ON Aula (data_aula, horario) INCLUDE (id_modalidade, id_instrutor, capacidade);
+
+---agenda de um instrutor num periodo (tambem ajuda a fk de instrutor)---
+CREATE INDEX IX_Aula_instrutor_data
+    ON Aula (id_instrutor, data_aula) INCLUDE (horario, id_modalidade, duracao);
+
+---modalidades mais frequentadas (fk de modalidade)---
+CREATE INDEX IX_Aula_modalidade
+    ON Aula (id_modalidade);
+
+---frequencia de cada aluno---
+CREATE INDEX IX_Presenca_aluno
+    ON Presenca (id_aluno) INCLUDE (presente);
+
+---presencas de cada aula---
+CREATE INDEX IX_Presenca_aula
+    ON Presenca (id_aula) INCLUDE (presente);
+
+---evolucao fisica do aluno---
+CREATE INDEX IX_Avaliacao_aluno_data
+    ON Avaliacao_Fisica (id_aluno, data_avaliacao) INCLUDE (peso, altura, percentual_gordura);
+
+---fk de avaliacao fisica para instrutor---
+CREATE INDEX IX_Avaliacao_instrutor
+    ON Avaliacao_Fisica (id_instrutor);
+
+---treino ativo do aluno---
+CREATE INDEX IX_Treino_aluno_ativo
+    ON Treino (id_aluno, ativo) INCLUDE (nome);
+
+---fk de treino para instrutor---
+CREATE INDEX IX_Treino_instrutor
+    ON Treino (id_instrutor);
+
+---exercicios mais usados nos treinos (fk de exercicio)---
+CREATE INDEX IX_Item_Treino_exercicio
+    ON Item_Treino (id_exercicio);
+
+---buscar aluno pelo nome---
+CREATE INDEX IX_Aluno_nome
+    ON Aluno (nome);
+GO
