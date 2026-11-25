@@ -1,4 +1,6 @@
----inserindo dados na tabela aluno---
+USE Academia;
+GO
+
 INSERT INTO Aluno (nome, cpf, email, data_nascimento, telefone, genero, ativo) VALUES
     (N'Ana Beatriz Souza', N'10791931110', N'ana.beatriz.souza@email.com', '1973-06-08', N'48927654321', N'F', 1),
     (N'Bruno Henrique Lima', N'11583862226', N'bruno.henrique.lima@email.com', '1976-11-15', N'48935308642', N'M', 1),
@@ -22,7 +24,6 @@ INSERT INTO Aluno (nome, cpf, email, data_nascimento, telefone, genero, ativo) V
     (N'Thiago Carvalho', N'25838622008', N'thiago.carvalho@email.com', '1995-05-06', N'48983086420', N'M', 1);
 GO
 
----inserindo dados na tabela plano---
 INSERT INTO Plano (nome, descricao, valor, duracao_meses, ativo) VALUES
     (N'Mensal Básico', N'Acesso à musculação em horário comercial', 89.90, 1, 1),
     (N'Mensal Plus', N'Musculação e aulas coletivas', 119.90, 1, 1),
@@ -46,7 +47,6 @@ INSERT INTO Plano (nome, descricao, valor, duracao_meses, ativo) VALUES
     (N'Noturno', N'Acesso das 16h às 23h', 84.90, 1, 1);
 GO
 
----inserindo dados na tabela instrutor---
 INSERT INTO Instrutor (nome, cpf, email, especialidade, telefone, ativo) VALUES
     (N'Carlos Eduardo Silva', N'89985041119', N'carlos.eduardo.silva@academia.com', N'Musculação', N'48950370371', 1),
     (N'Fernanda Duarte', N'90776972251', N'fernanda.duarte@academia.com', N'Funcional', N'48958024692', 1),
@@ -70,7 +70,6 @@ INSERT INTO Instrutor (nome, cpf, email, especialidade, telefone, ativo) VALUES
     (N'Cláudia Barros', N'10503173274', N'claudia.barros@academia.com', N'Mobilidade', N'48915802470', 1);
 GO
 
----inserindo dados na tabela modalidade---
 INSERT INTO Modalidade (nome, descricao) VALUES
     (N'Musculação', N'Treino com pesos e máquinas'),
     (N'Funcional', N'Circuito de movimentos funcionais'),
@@ -94,7 +93,6 @@ INSERT INTO Modalidade (nome, descricao) VALUES
     (N'Funcional Kids', N'Aula para jovens de 10 a 15 anos');
 GO
 
----inserindo dados na tabela exercicio---
 INSERT INTO Exercicio (nome, grupo_muscular, descricao) VALUES
     (N'Supino reto', N'Peitoral', N'Barra no banco reto'),
     (N'Agachamento livre', N'Pernas', N'Barra nas costas'),
@@ -118,16 +116,15 @@ INSERT INTO Exercicio (nome, grupo_muscular, descricao) VALUES
     (N'Esteira', N'Cardio', N'Corrida ou caminhada');
 GO
 
----inserindo dados na tabela assinatura---
 INSERT INTO Assinatura (id_aluno, id_plano, data_inicio, data_fim, status, valor_mensal) VALUES
     (1, 8, '2026-10-08', '2027-04-08', N'Ativa', 99.90),
     (2, 15, '2026-09-15', '2026-10-15', N'Vencida', 64.90),
     (3, 2, '2026-08-23', '2026-09-23', N'Vencida', 119.90),
-    (4, 9, '2026-07-31', '2027-01-28', N'Cancelada', 129.90),
+    (4, 9, '2026-07-31', '2027-01-31', N'Cancelada', 129.90),
     (5, 16, '2026-07-08', '2027-07-08', N'Ativa', 49.90),
     (6, 3, '2026-06-15', '2026-07-15', N'Vencida', 149.90),
     (7, 10, '2026-05-23', '2027-05-23', N'Ativa', 59.90),
-    (8, 17, '2026-10-17', '2026-11-17', N'Suspensa', 159.90),
+    (8, 17, '2026-11-10', '2026-12-10', N'Suspensa', 159.90),
     (9, 4, '2026-09-24', '2026-12-24', N'Ativa', 79.90),
     (10, 11, '2026-09-01', '2027-09-01', N'Ativa', 89.90),
     (11, 18, '2026-08-09', '2026-09-09', N'Vencida', 219.90),
@@ -142,7 +139,6 @@ INSERT INTO Assinatura (id_aluno, id_plano, data_inicio, data_fim, status, valor
     (20, 1, '2026-07-03', '2026-08-03', N'Vencida', 89.90);
 GO
 
----inserindo dados na tabela pagamento---
 INSERT INTO Pagamento (id_assinatura, data_pagamento, valor, metodo_pagamento, status, referencia) VALUES
     (1, '2026-10-10', 99.90, N'Credito', N'Pago', N'REF-2026-0001'),
     (2, '2026-09-17', 64.90, N'Debito', N'Pago', N'REF-2026-0002'),
@@ -151,7 +147,7 @@ INSERT INTO Pagamento (id_assinatura, data_pagamento, valor, metodo_pagamento, s
     (5, '2026-07-10', 49.90, N'Pix', N'Pago', N'REF-2026-0005'),
     (6, '2026-06-17', 149.90, N'Credito', N'Pago', N'REF-2026-0006'),
     (7, '2026-05-25', 59.90, N'Debito', N'Pendente', N'REF-2026-0007'),
-    (8, '2026-10-19', 159.90, N'Boleto', N'Atrasado', N'REF-2026-0008'),
+    (8, '2026-11-12', 159.90, N'Boleto', N'Atrasado', N'REF-2026-0008'),
     (9, '2026-09-26', 79.90, N'Dinheiro', N'Pago', N'REF-2026-0009'),
     (10, '2026-09-03', 89.90, N'Pix', N'Atrasado', N'REF-2026-0010'),
     (11, '2026-08-11', 219.90, N'Credito', N'Pago', N'REF-2026-0011'),
@@ -165,7 +161,6 @@ INSERT INTO Pagamento (id_assinatura, data_pagamento, valor, metodo_pagamento, s
     (19, '2026-07-28', 54.90, N'Dinheiro', N'Pago', N'REF-2026-0019'),
     (20, '2026-07-05', 89.90, N'Pix', N'Pago', N'REF-2026-0020');
 GO
----inserindo dados na tabela aula---
 INSERT INTO Aula (id_modalidade, id_instrutor, data_aula, horario, duracao, capacidade) VALUES
     (1, 1, '2026-11-02', '07:00', 50, 12),
     (2, 2, '2026-11-03', '08:00', 60, 15),
@@ -185,16 +180,15 @@ INSERT INTO Aula (id_modalidade, id_instrutor, data_aula, horario, duracao, capa
     (16, 16, '2026-11-17', '10:00', 50, 25),
     (17, 17, '2026-11-18', '12:00', 60, 30),
     (18, 18, '2026-11-19', '14:00', 60, 10),
-    (19, 19, '2026-11-20', '16:00', 90, 12),
+    (19, 17, '2026-11-20', '16:00', 90, 12),
     (20, 20, '2026-11-21', '17:00', 45, 15);
 GO
 
----inserindo dados na tabela presenca---
 INSERT INTO Presenca (id_aluno, id_aula, presente) VALUES
     (1, 4, 1),
     (2, 7, 1),
     (3, 10, 1),
-    (4, 13, 1),
+    (1, 13, 1),
     (5, 16, 0),
     (6, 19, 1),
     (7, 2, 1),
@@ -204,7 +198,7 @@ INSERT INTO Presenca (id_aluno, id_aula, presente) VALUES
     (11, 14, 1),
     (12, 17, 1),
     (13, 20, 1),
-    (14, 3, 1),
+    (7, 3, 1),
     (15, 6, 0),
     (16, 9, 1),
     (17, 12, 1),
@@ -214,7 +208,7 @@ INSERT INTO Presenca (id_aluno, id_aula, presente) VALUES
     (1, 11, 1),
     (2, 14, 1),
     (3, 17, 0),
-    (4, 20, 1),
+    (5, 20, 1),
     (5, 3, 1),
     (6, 6, 1),
     (7, 9, 1),
@@ -224,7 +218,7 @@ INSERT INTO Presenca (id_aluno, id_aula, presente) VALUES
     (11, 1, 1),
     (12, 4, 1),
     (13, 7, 0),
-    (14, 10, 1),
+    (9, 10, 1),
     (15, 13, 1),
     (16, 16, 1),
     (17, 19, 1),
@@ -233,7 +227,6 @@ INSERT INTO Presenca (id_aluno, id_aula, presente) VALUES
     (20, 8, 1);
 GO
 
----inserindo dados na tabela avaliacao fisica---
 INSERT INTO Avaliacao_Fisica (id_aluno, id_instrutor, data_avaliacao, peso, altura, percentual_gordura, observacoes) VALUES
     (1, 4, '2026-01-06', 92.10, 1.62, 25.50, N'Foco em perda de gordura'),
     (2, 7, '2026-02-11', 89.20, 1.69, 18.50, N'Ganho de massa recomendado'),
@@ -257,12 +250,11 @@ INSERT INTO Avaliacao_Fisica (id_aluno, id_instrutor, data_avaliacao, peso, altu
     (10, 1, '2026-10-24', 62.70, 1.55, 20.70, N'Boa condição geral');
 GO
 
----inserindo dados na tabela treino---
 INSERT INTO Treino (id_aluno, id_instrutor, nome, objetivo, data_criacao, ativo) VALUES
     (1, 4, N'Treino A - Ana', N'Emagrecimento', '2026-02-05', 1),
     (2, 7, N'Treino B - Bruno', N'Condicionamento', '2026-03-09', 1),
     (3, 10, N'Treino C - Camila', N'Reabilitação', '2026-04-13', 1),
-    (4, 13, N'Treino D - Daniel', N'Definição', '2026-05-17', 1),
+    (4, 13, N'Treino D - Daniel', N'Definição', '2026-05-17', 0),
     (5, 16, N'Treino E - Eduarda', N'Ganho de força', '2026-06-21', 1),
     (6, 19, N'Treino A - Felipe', N'Resistência', '2026-07-25', 1),
     (7, 2, N'Treino B - Gabriela', N'Saúde geral', '2026-08-02', 0),
@@ -272,7 +264,7 @@ INSERT INTO Treino (id_aluno, id_instrutor, nome, objetivo, data_criacao, ativo)
     (11, 14, N'Treino A - Karina', N'Reabilitação', '2026-02-18', 1),
     (12, 17, N'Treino B - Lucas', N'Definição', '2026-03-22', 1),
     (13, 20, N'Treino C - Mariana', N'Ganho de força', '2026-04-26', 1),
-    (14, 3, N'Treino D - Nicolas', N'Resistência', '2026-05-03', 1),
+    (14, 3, N'Treino D - Nicolas', N'Resistência', '2026-05-03', 0),
     (15, 6, N'Treino E - Olívia', N'Saúde geral', '2026-06-07', 1),
     (16, 9, N'Treino A - Paulo', N'Hipertrofia', '2026-07-11', 1),
     (17, 12, N'Treino B - Quézia', N'Emagrecimento', '2026-08-15', 1),
@@ -281,66 +273,65 @@ INSERT INTO Treino (id_aluno, id_instrutor, nome, objetivo, data_criacao, ativo)
     (20, 1, N'Treino E - Thiago', N'Definição', '2026-01-27', 1);
 GO
 
----inserindo dados na tabela item treino---
 INSERT INTO Item_Treino (id_treino, id_exercicio, series, repeticoes, carga) VALUES
     (1, 8, 4, 10, 20.00),
     (1, 11, 5, 12, 60.00),
-    (1, 14, 3, 15, 0.00),
+    (1, 14, 3, 15, NULL),
     (2, 15, 5, 12, 40.00),
     (2, 18, 3, 15, 10.00),
     (2, 1, 4, 8, 20.00),
     (3, 2, 3, 15, 60.00),
-    (3, 5, 4, 8, 0.00),
+    (3, 5, 4, 8, 15.00),
     (3, 8, 5, 10, 40.00),
     (4, 9, 4, 8, 10.00),
     (4, 12, 5, 10, 20.00),
     (4, 15, 3, 12, 60.00),
-    (5, 16, 5, 10, 0.00),
-    (5, 19, 3, 12, 40.00),
+    (5, 16, 5, 10, 12.00),
+    (5, 19, 3, 12, NULL),
     (5, 2, 4, 15, 10.00),
     (6, 3, 3, 12, 20.00),
     (6, 6, 4, 15, 60.00),
-    (6, 9, 5, 8, 0.00),
+    (6, 9, 5, 8, 120.00),
     (7, 10, 4, 15, 40.00),
-    (7, 13, 5, 8, 10.00),
+    (7, 13, 5, 8, NULL),
     (7, 16, 3, 10, 20.00),
     (8, 17, 5, 8, 60.00),
-    (8, 20, 3, 10, 0.00),
+    (8, 20, 3, 10, NULL),
     (8, 3, 4, 12, 40.00),
     (9, 4, 3, 10, 10.00),
     (9, 7, 4, 12, 20.00),
     (9, 10, 5, 15, 60.00),
-    (10, 11, 4, 12, 0.00),
-    (10, 14, 5, 15, 40.00),
+    (10, 11, 4, 12, 30.00),
+    (10, 14, 5, 15, NULL),
     (10, 17, 3, 8, 10.00),
     (11, 18, 5, 15, 20.00),
     (11, 1, 3, 8, 60.00),
-    (11, 4, 4, 10, 0.00),
+    (11, 4, 4, 10, 12.00),
     (12, 5, 3, 8, 40.00),
     (12, 8, 4, 10, 10.00),
     (12, 11, 5, 12, 20.00),
     (13, 12, 4, 10, 60.00),
-    (13, 15, 5, 12, 0.00),
+    (13, 15, 5, 12, 40.00),
     (13, 18, 3, 15, 40.00),
-    (14, 19, 5, 12, 10.00),
+    (14, 19, 5, 12, NULL),
     (14, 2, 3, 15, 20.00),
     (14, 5, 4, 8, 60.00),
-    (15, 6, 3, 15, 0.00),
+    (15, 6, 3, 15, 20.00),
     (15, 9, 4, 8, 40.00),
     (15, 12, 5, 10, 10.00),
-    (16, 13, 4, 8, 20.00),
+    (16, 13, 4, 8, NULL),
     (16, 16, 5, 10, 60.00),
-    (16, 19, 3, 12, 0.00),
-    (17, 20, 5, 10, 40.00),
+    (16, 19, 3, 12, NULL),
+    (17, 20, 5, 10, NULL),
     (17, 3, 3, 12, 10.00),
     (17, 6, 4, 15, 20.00),
     (18, 7, 3, 12, 60.00),
-    (18, 10, 4, 15, 0.00),
-    (18, 13, 5, 8, 40.00),
-    (19, 14, 4, 15, 10.00),
+    (18, 10, 4, 15, 35.00),
+    (18, 13, 5, 8, NULL),
+    (19, 14, 4, 15, NULL),
     (19, 17, 5, 8, 20.00),
-    (19, 20, 3, 10, 60.00),
-    (20, 1, 5, 8, 0.00),
+    (19, 20, 3, 10, NULL),
+    (20, 1, 5, 8, 30.00),
     (20, 4, 3, 10, 40.00),
     (20, 7, 4, 12, 10.00);
 GO

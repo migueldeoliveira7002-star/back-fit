@@ -1,0 +1,22 @@
+USE Academia;
+GO
+
+CREATE TABLE Aluno (
+    id_aluno        INT IDENTITY(1,1) NOT NULL,
+    nome            VARCHAR(100) NOT NULL,
+    cpf             CHAR(11)     NOT NULL,
+    email           VARCHAR(100) NOT NULL,
+    data_nascimento DATE         NOT NULL,
+    telefone        VARCHAR(11)  NULL,
+    genero          CHAR(1)      NULL,
+    ativo           BIT          NOT NULL CONSTRAINT DF_Aluno_ativo DEFAULT 1,
+    CONSTRAINT PK_Aluno PRIMARY KEY (id_aluno),
+    CONSTRAINT UQ_Aluno_cpf   UNIQUE (cpf),
+    CONSTRAINT UQ_Aluno_email UNIQUE (email),
+    CONSTRAINT CK_Aluno_cpf      CHECK (cpf NOT LIKE '%[^0-9]%'),
+    CONSTRAINT CK_Aluno_email    CHECK (email LIKE '%_@_%._%'),
+    CONSTRAINT CK_Aluno_telefone CHECK (telefone IS NULL OR telefone NOT LIKE '%[^0-9]%'),
+    CONSTRAINT CK_Aluno_genero   CHECK (genero IN ('M','F','O')),
+    CONSTRAINT CK_Aluno_nasc     CHECK (data_nascimento >= '1900-01-01')
+);
+GO

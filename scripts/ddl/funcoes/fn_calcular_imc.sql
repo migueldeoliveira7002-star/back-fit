@@ -1,3 +1,9 @@
+USE Academia;
+GO
+
+DROP FUNCTION IF EXISTS dbo.fn_CalcularIMC;
+GO
+
 CREATE FUNCTION dbo.fn_CalcularIMC (@peso DECIMAL(5,2), @altura DECIMAL(4,2))
 RETURNS DECIMAL(5,2)
 AS
